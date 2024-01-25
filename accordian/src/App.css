@@ -1,0 +1,13 @@
+.accordian-container{
+  background-color: #000;
+  color: #fff;
+  height: 100vh;
+}
+.container-align{
+  margin: auto;
+  width: 80%;
+  margin-top: 50px;
+}
+.custom-header{
+  background-color: rgba(0, 0, 233, 0.5);
+}
