@@ -5,6 +5,7 @@ import Backgroundcolor from './components/BackgroundChanger';
 import DigitalClock from './components/DigitalClock';
 import Gallery from './components/Gallery';
 import Timer from './components/Timer';
+import WordLetterCounter from './components/WordCounter';
 import UserFeed from './components/userFeed/UserFeed';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <AlertMessage />
       <Timer />
       <Backgroundcolor />
+      <WordLetterCounter />
     </div>
   );
 }

@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 
 function RegisterForm() {
-  // const initialValues = { username: "", email: "", password: "" };
   const [formValues, setFormValues] = useState('');
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target.value;
     setFormValues({ ...formValues, [name]: value });
   };
 
@@ -19,11 +18,9 @@ function RegisterForm() {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      // Clear form values after successful submission
-      // setFormValues(initialValues);
       console.log("Form Values:", formValues);
     }
-  }, [formErrors, isSubmit]);
+  }, [formValues,formErrors, isSubmit]);
 
   const validate = (values) => {
     const errors = {};
@@ -47,13 +44,14 @@ function RegisterForm() {
   };
 
   return (
+    <div className="overlay">
     <div className="container">
       {Object.keys(formErrors).length === 0 && isSubmit ? (
         <div className="ui message success">Signed in successfully</div>
       ) : (
         <form onSubmit={handleSubmit}>
         <h1>Login Form</h1>
-        <div className="ui divider"></div>
+        <div className="ui divider">
         <div className="ui form">
           <div className="field">
             <label>Username</label>
@@ -88,12 +86,13 @@ function RegisterForm() {
             />
           </div>
           <p>{formErrors.password}</p>
-          <button className="fluid ui button blue">Submit</button>
+          <button className="button">Submit</button>
+        </div>
         </div>
       </form>
       )}
 
-     
+</div>
     </div>
   );
 }
