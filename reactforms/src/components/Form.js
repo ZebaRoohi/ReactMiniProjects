@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
+import { TextField, Button, Container, Typography, Box, Alert } from "@mui/material";
 
 function RegisterForm() {
-  const [formValues, setFormValues] = useState('');
+  const [formValues, setFormValues] = useState({ username: '', email: '', password: '' });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target.value;
+    const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
@@ -20,7 +21,7 @@ function RegisterForm() {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log("Form Values:", formValues);
     }
-  }, [formValues,formErrors, isSubmit]);
+  }, [formErrors, isSubmit]);
 
   const validate = (values) => {
     const errors = {};
@@ -44,56 +45,59 @@ function RegisterForm() {
   };
 
   return (
-    <div className="overlay">
-    <div className="container">
+    <Container maxWidth="sm" sx={{ mt: 5 }}>
       {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="ui message success">Signed in successfully</div>
+        <Alert severity="success">Signed in successfully</Alert>
       ) : (
         <form onSubmit={handleSubmit}>
-        <h1>Login Form</h1>
-        <div className="ui divider">
-        <div className="ui form">
-          <div className="field">
-            <label>Username</label>
-            <input
-              type="text"
+          <Typography variant="h4" align="center" gutterBottom>
+            Register Form
+          </Typography>
+          <Box sx={{ mt: 2 }}>
+            <TextField
+              fullWidth
+              margin="normal"
+              label="Username"
               name="username"
-              placeholder="Username"
               value={formValues.username}
               onChange={handleChange}
+              error={!!formErrors.username}
+              helperText={formErrors.username}
             />
-          </div>
-          <p>{formErrors.username}</p>
-          <div className="field">
-            <label>Email</label>
-            <input
-              type="text"
+            <TextField
+              fullWidth
+              margin="normal"
+              label="Email"
               name="email"
-              placeholder="Email"
               value={formValues.email}
               onChange={handleChange}
+              error={!!formErrors.email}
+              helperText={formErrors.email}
             />
-          </div>
-          <p>{formErrors.email}</p>
-          <div className="field">
-            <label>Password</label>
-            <input
-              type="password"
+            <TextField
+              fullWidth
+              margin="normal"
+              label="Password"
               name="password"
-              placeholder="Password"
+              type="password"
               value={formValues.password}
               onChange={handleChange}
+              error={!!formErrors.password}
+              helperText={formErrors.password}
             />
-          </div>
-          <p>{formErrors.password}</p>
-          <button className="button">Submit</button>
-        </div>
-        </div>
-      </form>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ mt: 3 }}
+            >
+              Submit
+            </Button>
+          </Box>
+        </form>
       )}
-
-</div>
-    </div>
+    </Container>
   );
 }
 
