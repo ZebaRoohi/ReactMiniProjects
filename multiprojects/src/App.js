@@ -1,5 +1,6 @@
 
 import './App.css';
+import Chat from './components/chatgemini/Chat';
 import CloudinaryImage from './components/CloudinaryImage';
 import GeoLocation from './components/GeoLocation';
 
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <GeoLocation />
       <CloudinaryImage />
+      <Chat />
     </div>
   );
 }
